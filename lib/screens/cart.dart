@@ -1,8 +1,9 @@
+import 'package:book_store/screens/checkout_screen.dart';
 import 'package:book_store/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
 
 class cartScreen extends StatefulWidget {
-   cartScreen({super.key});
+  cartScreen({super.key});
 
   @override
   State<cartScreen> createState() => _cartScreenState();
@@ -12,21 +13,24 @@ class _cartScreenState extends State<cartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(child: ListView(
+        body: Column(
+      children: [
+        Expanded(
+          child: ListView(
             children: [
-              CartItem(title: 'BOOK', price: 250,  image: 'Assets/images/back.png'),
-              CartItem(title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
-              CartItem(title: 'BOOK', price: 250,  image: 'Assets/images/back.png'),
-              CartItem(title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
-
-
+              CartItem(
+                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
+              CartItem(
+                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
+              CartItem(
+                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
+              CartItem(
+                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
             ],
           ),
-
-          ),
-          Padding(padding: EdgeInsets.symmetric(horizontal: 15),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
               Divider(),
@@ -49,14 +53,20 @@ class _cartScreenState extends State<cartScreen> {
                       color: Colors.black,
                     ),
                   ),
-
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CheckoutScreen()));
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15),
                     backgroundColor: Color(0xFFB1975A),
@@ -64,24 +74,22 @@ class _cartScreenState extends State<cartScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: Text("checkout",style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
+                  child: Text(
+                    "checkout",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(height: 20,)
-
-
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
-
-          ),
-
-        ],
-
-      )
-    );
+        ),
+      ],
+    ));
   }
 }

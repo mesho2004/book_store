@@ -1,4 +1,5 @@
 import 'package:book_store/screens/login_screen.dart';
+import 'package:book_store/widgets/custom_textField.dart';
 import 'package:flutter/material.dart';
 
 class registerScreen extends StatelessWidget {
@@ -20,53 +21,13 @@ class registerScreen extends StatelessWidget {
             ),),
             SizedBox(height: 30.0),
 
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Username',
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
+           CustomTextfield(text: "username"),
             SizedBox(height: 15.0),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Email',
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
+          CustomTextfield(text: "Email"),
             SizedBox(height: 15.0),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Password',
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
+           CustomTextfield(text: "password"),
             SizedBox(height: 15.0),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Confirm Password',
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
+           CustomTextfield(text: "Comfirm password"),
             SizedBox(height: 20,),
             SizedBox(
               width: double.infinity,
