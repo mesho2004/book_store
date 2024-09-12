@@ -1,6 +1,8 @@
+import 'package:book_store/core/api_service.dart';
 import 'package:book_store/screens/forgot_password.dart';
 import 'package:book_store/screens/home_layout.dart';
 import 'package:book_store/screens/register_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class loginScreen extends StatefulWidget {
@@ -9,17 +11,54 @@ class loginScreen extends StatefulWidget {
   @override
   State<loginScreen> createState() => _loginScreenState();
 }
-var isObsecure=true;
+
+var isObsecure = true;
 
 @override
-void initState(){
-
+void initState() {
   isObsecure;
 }
 
 class _loginScreenState extends State<loginScreen> {
-  final TextEditingController emailController=TextEditingController();
-  final TextEditingController passwordController=TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  Future<void> login() async {
+    final String email = emailController.text;
+    final String password = passwordController.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please fill all fields')),
+      );
+      return;
+    }
+
+    try {
+      final response = await Dio().post(
+        'https://api.codingarabic.online/api/auth/login',
+        data: {'email': email, 'password': password},
+      );
+      print(response.data);
+
+      if (response.statusCode == 200) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeLayout()),
+        );
+      } else {
+        // Handle error response
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login failed: ${response.data['message']}')),
+        );
+      }
+    } catch (e) {
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('Error: $e')),
+      // );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,14 +66,26 @@ class _loginScreenState extends State<loginScreen> {
         padding: EdgeInsets.all(20),
         child: ListView(
           children: [
-            SizedBox(height: 60,),
-            // IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios),),
-            SizedBox(height: 20,),
-            Text("Welcome back! Glad to see you, Again!",style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 60,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.arrow_back_ios),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Welcome back! Glad to see you, Again!",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
             TextField(
               controller: emailController,
               decoration: InputDecoration(
@@ -52,27 +103,33 @@ class _loginScreenState extends State<loginScreen> {
               controller: passwordController,
               obscureText: isObsecure,
               decoration: InputDecoration(
-                hintText: 'Enter your password',
-                filled: true,
-                fillColor: Colors.grey[200],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide.none,
-                ),
-                suffixIcon:IconButton(
-                  icon: isObsecure? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-                  onPressed: () {
-                    setState(() {
-                      isObsecure =!isObsecure;
-                    });
-                  },
-                )
-              ),
-              ),
-            SizedBox(height: 5,),
+                  hintText: 'Enter your password',
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: IconButton(
+                    icon: isObsecure
+                        ? Icon(Icons.visibility)
+                        : Icon(Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        isObsecure = !isObsecure;
+                      });
+                    },
+                  )),
+            ),
+            SizedBox(
+              height: 5,
+            ),
             GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>forgotPassword()),);
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => forgotPassword()),
+                );
               },
               child: Align(
                 alignment: Alignment.centerRight,
@@ -84,35 +141,38 @@ class _loginScreenState extends State<loginScreen> {
                 ),
               ),
             ),
-          SizedBox(height: 20.0),
-    SizedBox(
-    width: double.infinity,
-    child: ElevatedButton(
-    style: ElevatedButton.styleFrom(
-    backgroundColor: Color(0xFFC6A862), // Button color
-    padding: EdgeInsets.symmetric(vertical: 15.0),
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10.0),
-    ),
-    ),
-    onPressed: () {
-      if (emailController.text.isEmpty || passwordController.text.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please fill all fields')),
-        );
-      }
-      else {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeLayout()));
-      }
-    },
-      child: Text(
-        'Login',
-        style: TextStyle(fontSize: 18.0,color: Colors.white),
-      ),
-    ),
-    ),
-            SizedBox(height: 30,),
+            SizedBox(height: 20.0),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFC6A862), // Button color
+                  padding: EdgeInsets.symmetric(vertical: 15.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onPressed: () {
+                  login();
+                  if (emailController.text.isEmpty ||
+                      passwordController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Please fill all fields')),
+                    );
+                  } else {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomeLayout()));
+                  }
+                },
+                child: Text(
+                  'Login',
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
             Row(
               children: [
                 Expanded(child: Divider(thickness: 1.5)),
@@ -129,18 +189,15 @@ class _loginScreenState extends State<loginScreen> {
               children: [
                 IconButton(
                   icon: Image.asset('Assets/images/facebook.png'),
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                 ),
                 IconButton(
                   icon: Image.asset('Assets/images/google.png'),
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                 ),
                 IconButton(
                   icon: Image.asset('Assets/images/apple.png'),
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                 ),
               ],
             ),
@@ -149,29 +206,29 @@ class _loginScreenState extends State<loginScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have an account?",style: TextStyle(
-                    color: Colors.black,
-                  ),),
-                  TextButton(onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>registerScreen()));
-
-                  }, child: Text("Register Now",style: TextStyle(
-                    color: Color(0xFFC6A862)
-                  ),))
+                  Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => registerScreen()));
+                      },
+                      child: Text(
+                        "Register Now",
+                        style: TextStyle(color: Color(0xFFC6A862)),
+                      ))
                 ],
-
               ),
-
             ),
-
-
-
-
-
           ],
         ),
       ),
-
     );
   }
 }

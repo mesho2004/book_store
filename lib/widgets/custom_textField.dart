@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatelessWidget {
-   CustomTextfield({super.key,required this.text,this.contentInsets});
+  CustomTextfield({super.key, required this.text, this.contentInsets, this.control});
   String text;
   EdgeInsets? contentInsets;
+  TextEditingController? control;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,6 @@ class CustomTextfield extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide.none,
-          
-
         ),
       ),
     );

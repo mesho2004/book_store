@@ -1,7 +1,7 @@
 import 'package:book_store/screens/cart.dart';
 import 'package:book_store/screens/favorites_screen.dart';
 import 'package:book_store/screens/home_screen.dart';
-import 'package:book_store/screens/profile_screen.dart';
+import 'package:book_store/screens/profileScreen/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeLayout extends StatefulWidget {
