@@ -1,3 +1,4 @@
+import 'package:book_store/screens/book_deatils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:book_store/screens/cart.dart';
@@ -32,7 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> fetchBooks() async {
     try {
-      final response = await Dio().get('https://api.codingarabic.online/api/books');
+      final response =
+          await Dio().get('https://api.codingarabic.online/api/books');
       setState(() {
         books = response.data["data"];
         isLoading = false;
@@ -41,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         isLoading = false;
       });
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to fetch books')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Failed to fetch books')));
     }
   }
 
@@ -101,13 +104,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                     ),
-                    itemCount: 5,
+                    itemCount: books.length,
                     itemBuilder: (context, index) {
                       final book = books[index];
                       return CustomCard(
-                        image: book['image_url'] ?? 'Assets/images/book.png',
+                        image: book['image'],
                         title: book['title'],
-                        onPressedFunction: () {},
+                        onPressedFunction: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BookDetails()));
+                        },
                       );
                     },
                   ),

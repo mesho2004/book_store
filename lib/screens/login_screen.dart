@@ -201,7 +201,7 @@ class _loginScreenState extends State<loginScreen> {
                 ),
               ],
             ),
-            Spacer(),
+            // Spacer(),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

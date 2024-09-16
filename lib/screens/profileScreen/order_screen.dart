@@ -44,11 +44,11 @@ class OrderCard extends StatelessWidget {
   final String totalAmount;
 
   const OrderCard({
-    Key? key,
+    super.key,
     required this.orderNumber,
     required this.date,
     required this.totalAmount,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
