@@ -1,4 +1,4 @@
-import 'package:book_store/screens/home_screen.dart';
+import 'package:book_store/books/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SuceessScreen extends StatelessWidget {

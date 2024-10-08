@@ -1,4 +1,4 @@
-import 'package:book_store/widgets/custom_button.dart';
+import 'package:book_store/books/presentation/screens/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 import 'login_screen.dart';
@@ -52,7 +52,7 @@ class forgotPassword extends StatelessWidget {
                     color: Colors.black,
                   ),),
                   TextButton(onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>loginScreen()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
 
                   }, child: Text("Login",style: TextStyle(
                       color: Color(0xFFC6A862)

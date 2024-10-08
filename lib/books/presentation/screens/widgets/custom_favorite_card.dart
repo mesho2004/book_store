@@ -22,7 +22,7 @@ class CustomFavoriteCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(image,
+                child: Image.network(image,
                   width: 100,
                   height: 100,
                   fit: BoxFit.cover,

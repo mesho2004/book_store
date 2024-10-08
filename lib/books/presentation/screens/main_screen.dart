@@ -1,5 +1,5 @@
-import 'package:book_store/screens/login_screen.dart';
-import 'package:book_store/screens/register_screen.dart';
+import 'package:book_store/books/presentation/screens/login_screen.dart';
+import 'package:book_store/books/presentation/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 class mainScreen extends StatelessWidget {
@@ -43,7 +43,7 @@ class mainScreen extends StatelessWidget {
                     ),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>loginScreen()),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()),);
 
                     },
                     child: Text("Login",

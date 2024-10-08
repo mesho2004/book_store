@@ -1,7 +1,7 @@
-import 'package:book_store/screens/cart.dart';
-import 'package:book_store/screens/favorites_screen.dart';
-import 'package:book_store/screens/home_screen.dart';
-import 'package:book_store/screens/profileScreen/profile_screen.dart';
+import 'package:book_store/books/presentation/screens/cart.dart';
+import 'package:book_store/books/presentation/screens/favorites_screen.dart';
+import 'package:book_store/books/presentation/screens/home_screen.dart';
+import 'package:book_store/books/presentation/screens/profileScreen/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -24,7 +24,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         title: Image.asset("Assets/images/logo.png",width:130,height: 150,),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.add_alert_sharp)),

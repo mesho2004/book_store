@@ -1,6 +1,6 @@
-import 'package:book_store/screens/profileScreen/order_screen.dart';
-import 'package:book_store/screens/profileScreen/resetPassword.dart';
-import 'package:book_store/widgets/profileMenuItem.dart';
+import 'package:book_store/books/presentation/screens/profileScreen/order_screen.dart';
+import 'package:book_store/books/presentation/screens/profileScreen/resetPassword.dart';
+import 'package:book_store/books/presentation/screens/widgets/profileMenuItem.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {

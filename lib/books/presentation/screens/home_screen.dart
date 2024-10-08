@@ -1,10 +1,10 @@
-import 'package:book_store/screens/book_deatils.dart';
+import 'package:book_store/books/presentation/screens/book_deatils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:book_store/screens/cart.dart';
-import 'package:book_store/screens/favorites_screen.dart';
-import 'package:book_store/screens/profileScreen/profile_screen.dart';
-import 'package:book_store/widgets/custom_card.dart';
+import 'package:book_store/books/presentation/screens/cart.dart';
+import 'package:book_store/books/presentation/screens/favorites_screen.dart';
+import 'package:book_store/books/presentation/screens/profileScreen/profile_screen.dart';
+import 'package:book_store/books/presentation/screens/widgets/custom_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,12 +15,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  List<Widget> screens = [
-    HomeScreen(),
-    FavoritesScreen(),
-    cartScreen(),
-    ProfileScreen(),
-  ];
+  // List<Widget> screens = [
+  //   HomeScreen(),
+  //   FavoritesScreen(),
+  //   cartScreen(),
+  //   ProfileScreen(),
+  // ];
 
   List books = [];
   bool isLoading = true;
@@ -56,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              
               margin: EdgeInsets.all(15),
               width: 450,
               height: 200,
@@ -107,6 +108,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: books.length,
                     itemBuilder: (context, index) {
                       final book = books[index];
+                     
+                      
                       return CustomCard(
                         image: book['image'],
                         title: book['title'],
@@ -114,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BookDetails()));
+                                  builder: (context) => BookDetails(bookId: book['id'],)));
                         },
                       );
                     },

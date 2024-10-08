@@ -1,5 +1,5 @@
-import 'package:book_store/screens/checkout_screen.dart';
-import 'package:book_store/widgets/cart_item.dart';
+import 'package:book_store/books/presentation/screens/checkout_screen.dart';
+import 'package:book_store/books/presentation/screens/widgets/cart_item.dart';
 import 'package:flutter/material.dart';
 
 class cartScreen extends StatefulWidget {
