@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:book_store/core/api_service.dart';
-import 'package:book_store/core/features/auth/cubit/auth_state.dart';
+import 'package:book_store/core/features/api_service.dart';
+import 'package:book_store/core/features/cubit/auth_state.dart';
 import 'package:book_store/books/data/models/tokenModel.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

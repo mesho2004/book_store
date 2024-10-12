@@ -1,7 +1,7 @@
 import 'package:book_store/books/presentation/screens/home_screen.dart';
-import 'package:book_store/books/presentation/screens/login_screen.dart';
+import 'package:book_store/books/presentation/screens/auth/login_screen.dart';
 import 'package:book_store/books/presentation/screens/widgets/custom_textField.dart';
-import 'package:book_store/core/features/auth/cubit/auth_cubit.dart';
+import 'package:book_store/core/features/cubit/auth_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

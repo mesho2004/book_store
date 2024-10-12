@@ -1,4 +1,4 @@
-import 'package:book_store/books/presentation/screens/suceess_screen.dart';
+import 'package:book_store/books/presentation/screens/auth/suceess_screen.dart';
 import 'package:book_store/books/presentation/screens/widgets/custom_textField.dart';
 import 'package:flutter/material.dart';
 

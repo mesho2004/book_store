@@ -1,8 +1,8 @@
-import 'package:book_store/books/presentation/screens/forgot_password.dart';
+import 'package:book_store/books/presentation/screens/auth/forgot_password.dart';
 import 'package:book_store/books/presentation/screens/home_layout.dart';
-import 'package:book_store/books/presentation/screens/register_screen.dart';
-import 'package:book_store/core/features/auth/cubit/auth_cubit.dart';
-import 'package:book_store/core/features/auth/cubit/auth_state.dart';
+import 'package:book_store/books/presentation/screens/auth/register_screen.dart';
+import 'package:book_store/core/features/cubit/auth_cubit.dart';
+import 'package:book_store/core/features/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
