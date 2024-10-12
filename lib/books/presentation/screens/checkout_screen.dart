@@ -40,29 +40,6 @@ class CheckoutScreen extends StatelessWidget {
            child: Column(
             children: [
               Divider(),
-              Row(
-                children: [
-                   Text(
-                    'Total:',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    "1000",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-
-
-                ],
-              ),
                SizedBox(
                 height: 20,
               ),

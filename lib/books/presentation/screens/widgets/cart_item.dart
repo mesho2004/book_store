@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class CartItem extends StatefulWidget {
    String title;
-   double price;
    int quantity=1;
    String image;
 
   CartItem({
     required this.title,
-    required this.price,
     required this.image,
   });
 
@@ -42,7 +40,7 @@ class _CartItemState extends State<CartItem> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
+                child: Image.network(
                     widget.image, width: 60, height: 60, fit: BoxFit.cover),
               ),
               SizedBox(width: 16),
@@ -56,13 +54,6 @@ class _CartItemState extends State<CartItem> {
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
-                      ),
-                    ),
-                    Text(
-                      '₹${widget.price}',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[700],
                       ),
                     ),
                   ],

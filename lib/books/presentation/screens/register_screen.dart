@@ -157,11 +157,13 @@ class _registerScreenState extends State<registerScreen> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                onPressed: AuthCubit().register(
-                    userName: usernameController.text,
-                    password: passwordController.text,
-                    passwordConfirm: confirmPasswordController.text,
-                    userEmail: emailController.text),
+                onPressed: () async {
+                  await AuthCubit().register(
+                      userName: usernameController.text,
+                      password: passwordController.text,
+                      passwordConfirm: confirmPasswordController.text,
+                      userEmail: emailController.text);
+                },
                 child: Text(
                   'Register',
                   style: TextStyle(fontSize: 18.0, color: Colors.white),

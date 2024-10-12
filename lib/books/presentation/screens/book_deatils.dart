@@ -1,8 +1,9 @@
+import 'package:book_store/core/features/auth/cubit/cart_cubit.dart';
+import 'package:book_store/core/features/auth/cubit/favourite_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../../../core/features/auth/cubit/favourite_cubit.dart';
+import 'package:dio/dio.dart';
 
 class BookDetails extends StatefulWidget {
   final int bookId;
@@ -29,8 +30,7 @@ class BookDetailsState extends State<BookDetails> {
     try {
       int id = widget.bookId;
 
-      final response =
-          await dio.get('https://api.codingarabic.online/api/books/$id');
+      final response = await dio.get('https://api.codingarabic.online/api/books/$id');
 
       if (response.statusCode == 200) {
         setState(() {
@@ -61,7 +61,7 @@ class BookDetailsState extends State<BookDetails> {
           IconButton(
             icon: Icon(Icons.bookmark_border, color: Colors.black),
             onPressed: () {
-              BlocProvider.of<FavoritesCubit>(context).addToFavorites(bookData);
+              context.read<FavoritesCubit>().addToFavorites(bookData);
               Fluttertoast.showToast(
                 msg: 'Book added to favorites!',
                 backgroundColor: Colors.green,
@@ -117,7 +117,24 @@ class BookDetailsState extends State<BookDetails> {
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          final priceString = bookData['price'].toString();
+                          final price = double.tryParse(priceString) ?? 0.0;
+
+                          final bookWithNumericPrice = {
+                            ...bookData,
+                            'price': price,
+                          };
+
+                          context.read<CartCubit>().addToCart(bookWithNumericPrice);
+
+                          Fluttertoast.showToast(
+                            msg: 'Book added to cart!',
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            gravity: ToastGravity.BOTTOM,
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           padding: EdgeInsets.symmetric(

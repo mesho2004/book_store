@@ -47,7 +47,7 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  register(
+  Future<void> register(
       {required String userEmail,
       required String password,
       required String passwordConfirm,

@@ -51,7 +51,7 @@ class CustomFavoriteCard extends StatelessWidget {
                     SizedBox(height: 16),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFB89D68), // Button color
+                        backgroundColor: Color(0xFFB89D68),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -77,7 +77,7 @@ class CustomFavoriteCard extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
-                  // Handle delete action
+                 
                 },
                 color: Colors.black54,
               ),

@@ -43,7 +43,7 @@ class mainScreen extends StatelessWidget {
                     ),
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()),);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()),);
 
                     },
                     child: Text("Login",
@@ -70,7 +70,7 @@ class mainScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>registerScreen(),));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>registerScreen(),));
 
                   },
                   child: Text("Register",

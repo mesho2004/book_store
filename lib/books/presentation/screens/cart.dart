@@ -1,95 +1,83 @@
-import 'package:book_store/books/presentation/screens/checkout_screen.dart';
-import 'package:book_store/books/presentation/screens/widgets/cart_item.dart';
+import 'package:book_store/core/features/auth/cubit/cart_cubit.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'checkout_screen.dart';
+import 'widgets/cart_item.dart';
 
-class cartScreen extends StatefulWidget {
-  cartScreen({super.key});
-
+class CartScreen extends StatefulWidget {
   @override
-  State<cartScreen> createState() => _cartScreenState();
+  State<CartScreen> createState() => _CartScreenState();
 }
 
-class _cartScreenState extends State<cartScreen> {
+class _CartScreenState extends State<CartScreen> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Expanded(
-          child: ListView(
+     
+      body: BlocBuilder<CartCubit, List<Map<String, dynamic>>>(
+        builder: (context, cartItems) {
+          if (cartItems.isEmpty) {
+            return Center(
+              child: Text('No items in the cart.'),
+            );
+          }
+
+          double totalPrice = context.read<CartCubit>().getTotalPrice();
+
+          return Column(
             children: [
-              CartItem(
-                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
-              CartItem(
-                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
-              CartItem(
-                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
-              CartItem(
-                  title: 'BOOK', price: 250, image: 'Assets/images/back.png'),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              Divider(),
-              Row(
-                children: [
-                  Text(
-                    'Total:',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    "1000",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CheckoutScreen()));
+              Expanded(
+                child: ListView.builder(
+                  itemCount: cartItems.length,
+                  itemBuilder: (context, index) {
+                    final item = cartItems[index];
+                    return CartItem(
+                      title: item['title'] ?? 'Unknown',
+                      image: item['image'] ?? 'https://via.placeholder.com/150',
+                    );
                   },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    backgroundColor: Color(0xFFB1975A),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    "checkout",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              )
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  children: [
+                    Divider(),
+                   
+                    SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => CheckoutScreen()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          backgroundColor: Color(0xFFB1975A),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          "Checkout",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ),
-      ],
-    ));
+          );
+        },
+      ),
+    );
   }
 }

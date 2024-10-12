@@ -16,7 +16,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   List<Widget> screens = [
     HomeScreen(),
     FavoritesScreen(),
-    cartScreen(),
+    CartScreen(),
     ProfileScreen(),
 
   ];

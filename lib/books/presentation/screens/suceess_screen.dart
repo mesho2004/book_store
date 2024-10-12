@@ -1,3 +1,4 @@
+import 'package:book_store/books/presentation/screens/home_layout.dart';
 import 'package:book_store/books/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -34,10 +35,10 @@ class SuceessScreen extends StatelessWidget {
                 width: 350,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => HomeScreen()));
+                            builder: (context) => HomeLayout()));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 15),

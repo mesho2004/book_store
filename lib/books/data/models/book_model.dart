@@ -1,25 +1,35 @@
-class BookModel {
-  int? id;
-  String? title;
-  String? category;
-  String? description;
-  String? price;
-  String? image;
+class BooksModel {
+  int id;
+  String title;
+  String category;
+  String description;
+  double price;
+  String image;
 
-  BookModel(
-      {this.id,
-      this.title,
-      this.category,
-      this.description,
-      this.price,
-      this.image});
+  BooksModel({
+    required this.id,
+    required this.title,
+    required this.category,
+    required this.description,
+    required this.price,
+    required this.image,
+  });
 
-  BookModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    category = json['category'];
-    description = json['description'];
-    price = json['price'];
-    image = json['image'];
-  }
+  factory BooksModel.fromJson(Map<String, dynamic> json) => BooksModel(
+        id: json['id'],
+        title: json['title'],
+        category: json['category'],
+        description: json['description'],
+        price: json['price'],
+        image: json['image'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'category': category,
+        'description': description,
+        'price': price,
+        'image': image,
+      };
 }
