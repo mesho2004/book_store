@@ -1,6 +1,7 @@
 import 'package:book_store/books/presentation/screens/auth/forgot_password.dart';
 import 'package:book_store/books/presentation/screens/home_layout.dart';
 import 'package:book_store/books/presentation/screens/auth/register_screen.dart';
+import 'package:book_store/books/presentation/screens/main_screen.dart';
 import 'package:book_store/core/features/cubit/auth_cubit.dart';
 import 'package:book_store/core/features/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,15 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => mainScreen()));
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -43,12 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               return ListView(
                 children: [
                   const SizedBox(height: 60),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.arrow_back_ios),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
+                    const Text(
                     "Welcome back! Glad to see you, Again!",
                     style: TextStyle(
                       fontSize: 30,
@@ -71,7 +76,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Email is required';
-                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                      } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                          .hasMatch(value)) {
                         return 'Enter a valid email';
                       }
                       return null;
@@ -156,7 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           : const Text(
                               'Login',
-                              style: TextStyle(fontSize: 18.0, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 18.0, color: Colors.white),
                             ),
                     ),
                   ),

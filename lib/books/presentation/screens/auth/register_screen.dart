@@ -1,9 +1,11 @@
 import 'package:book_store/books/presentation/screens/home_screen.dart';
 import 'package:book_store/books/presentation/screens/auth/login_screen.dart';
+import 'package:book_store/books/presentation/screens/main_screen.dart';
 import 'package:book_store/books/presentation/screens/widgets/custom_textField.dart';
 import 'package:book_store/core/features/cubit/auth_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class registerScreen extends StatefulWidget {
@@ -116,7 +118,15 @@ class _registerScreenState extends State<registerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+     appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => mainScreen()));
+          },
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: ListView(
@@ -140,11 +150,14 @@ class _registerScreenState extends State<registerScreen> {
             CustomTextfield(
               text: "password",
               control: passwordController,
+              isObsecured: true,
+              
             ),
             SizedBox(height: 15.0),
             CustomTextfield(
               text: "Confirm password",
               control: confirmPasswordController,
+              isObsecured: true,
             ),
             SizedBox(height: 20),
             SizedBox(
@@ -163,6 +176,12 @@ class _registerScreenState extends State<registerScreen> {
                       password: passwordController.text,
                       passwordConfirm: confirmPasswordController.text,
                       userEmail: emailController.text);
+                     Fluttertoast.showToast(
+                            msg: 'Registration Successful',
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            gravity: ToastGravity.BOTTOM,
+                          );
                 },
                 child: Text(
                   'Register',
